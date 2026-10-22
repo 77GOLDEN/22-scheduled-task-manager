@@ -68,20 +68,6 @@ on. All times are stored as naive UTC. Read
 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the reasoning behind
 each decision.
 
-## Team roles & how to study this repo
-
-| Who | Files to own | Study order |
-|---|---|---|
-| Scheduler (A) | `backend/app/scheduler.py`, `backend/app/config.py` | 1. `compute_next_run` 2. `backoff_delay` 3. `tick()` 4. `test_scheduler.py` |
-| Backend (B) | `backend/app/routers/`, `backend/app/schemas.py`, `backend/app/main.py` | 1. `schemas.py` validators 2. `routers/tasks.py` 3. `test_api.py` |
-| Persistence (C) | `backend/app/models.py`, `backend/app/database.py`, `backend/seed.py` | 1. `models.py` 2. `seed.py` 3. run `seed.py`, inspect the DB |
-| UI (D) | `frontend/src/` | 1. `api.js` (mock switch) 2. `App.jsx` 3. `Countdown.jsx` 4. rest |
-| QA + DevOps (E) | `backend/tests/`, `.github/`, `docs/DEMO_SCRIPT.md` | 1. `test_time_logic.py` 2. run the suite 3. CI workflow |
-
-**Suggested team exercise:** everyone first reads
-`docs/ARCHITECTURE.md`, then runs the app + tests, then deletes one file
-at a time and rewrites it from scratch.
-
 ## API summary
 
 | Method | Path | Purpose |
