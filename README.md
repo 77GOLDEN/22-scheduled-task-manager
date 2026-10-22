@@ -110,7 +110,7 @@ Full contract with JSON examples: [docs/API_CONTRACT.md](docs/API_CONTRACT.md)
    env var `VITE_API_URL` = your Render URL.
 4. Update `FRONTEND_URL` on the backend to your Vercel URL (CORS).
 
-## Known limitations (be honest about these at demo time)
+## Known limitations
 
 - No authentication - single-user product.
 - Poll-based scheduling: runs can fire up to `TICK` seconds late; minimum
