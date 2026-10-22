@@ -1,4 +1,7 @@
-node_modules
+.venv/
+venv/
+__pycache__/
+node_modules/
+dist/
+scheduler.db
 .env
-__pycache__
-.DS_Store
