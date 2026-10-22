@@ -1,0 +1,41 @@
+databases:
+  - name: task-db
+    databaseName: scheduler
+    plan: free
+    region: frankfurt
+
+services:
+  # ---- Backend API + scheduler ----
+  - type: web
+    name: task-api
+    runtime: python
+    region: frankfurt
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: task-db
+          property: connectionString
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: FRONTEND_URL
+        sync: false
+      - key: API_BASE
+        sync: false
+
+  # ---- Dashboard (static site) ----
+  - type: web
+    name: task-dashboard
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_USE_MOCK
+        value: "false"
+      - key: VITE_API_URL
+        sync: false
